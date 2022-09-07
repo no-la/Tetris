@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Tetris</title>
+	<style>
+		body {
+			background: #ddf5ff;
+			display: inline;
+		}
+		#container {
+			margin: 0 auto;
+			width: 500px;
+			height: 600px;
+		}
+		#main {
+			display: flex;
+		}
+		.left {
+			float: left;
+		}
+		.right {
+			float: right;
+			margin: 10px;
+		}
+		.score {
+			font-size:30px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="main">
+			<div class="left">
+				<canvas id="cvs"></canvas>
+			</div>
+			<div class="right">
+				<canvas id="subcvs"></canvas>
+				<div class="score" id="Line">
+					Line
+				</div>
+				<div class="score" id="Best">
+					Best
+				</div>
+			</div>
+		</div>
+		<div id="explain">
+			<ul typeof="circle">
+				<li>任意のキーを押してスタート(※音が出ます)</li>
+				<li>←↓→でミノを移動</li>
+				<li>↑でクイックドロップ</li>
+				<li>Spaceで回転</li>
+				<li>バグがあるけど原因がわからないので放置してます</li>
+			</ul>
+		</div>
+	</div>
+	<script src="js/main.js"></script>
+</body>
+</html>
