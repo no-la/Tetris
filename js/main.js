@@ -1,16 +1,16 @@
-//ƒLƒƒƒ“ƒpƒX‚Ìæ“¾
+//ã‚­ãƒ£ãƒ³ãƒ‘ã‚¹ã®å–å¾—
 const cvs = document.getElementById("cvs");
 const ctx = cvs.getContext("2d");
 const subcvs = document.getElementById("subcvs");
 const subctx = subcvs.getContext("2d");
 
-//ƒuƒƒbƒN‚Pƒ}ƒX‚ÌƒTƒCƒY
+//ãƒ–ãƒ­ãƒƒã‚¯ï¼‘ãƒã‚¹ã®ã‚µã‚¤ã‚º
 const blockSize = 30;
-//ƒ}ƒX‚Ì”
+//ãƒã‚¹ã®æ•°
 const boardRow = 20;
 const boardCol = 10;
 
-//ƒLƒƒƒ“ƒpƒX‚ÌƒTƒCƒY‚ğw’è
+//ã‚­ãƒ£ãƒ³ãƒ‘ã‚¹ã®ã‚µã‚¤ã‚ºã‚’æŒ‡å®š
 const canvasWidth = blockSize * boardCol;
 const canvasHeight = blockSize * boardRow;
 const subCanvasWidth = blockSize * 5;
@@ -22,29 +22,24 @@ cvs.height = canvasHeight;
 subcvs.width = subCanvasWidth;
 subcvs.height = subCanvasHeight;
 
-//container‚Ìæ“¾
+//containerã®å–å¾—
 const container = document.getElementById("container");
 container.style.width = canvasWidth + 'px';
 
-//Line—p‚Ìdiv‚Ìæ“¾
+//Lineç”¨ã®divã®å–å¾—
 const lineText = document.getElementById("Line");
 const bestText = document.getElementById("Best");
-
-//BGM
-const music = new Audio("source/tetrisBGM.wav");
-music.loop = true;
-music.volume = 1;
 
 
 let isGameOver = true;
 let lines = 0;
 let best = 0;
 
-//—‰ºƒTƒCƒNƒ‹
+//è½ä¸‹ã‚µã‚¤ã‚¯ãƒ«
 const interval = 300;
 
 let timerId = NaN;
-//ƒ~ƒm‚Ì”z—ñ
+//ãƒŸãƒã®é…åˆ—
 const minoSize = 4;
 let mino;
 let offsetX = offsetY = 0;
@@ -105,7 +100,7 @@ const minoColors = [
 ];
 
 
-//ƒ{[ƒh‘S‘Ì‚Ì”z—ñ
+//ãƒœãƒ¼ãƒ‰å…¨ä½“ã®é…åˆ—
 const board = [];
 
 function setLineText() {
@@ -115,12 +110,12 @@ function setBestText() {
 	bestText.innerText = "Best:" + best;
 }
 	
-//•`‰æˆ—
+//æç”»å‡¦ç†
 function draw() {
 	ctx.fillStyle = "#000";
 	ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-	//Ï‚ñ‚Å‚ ‚éƒ~ƒm
+	//ç©ã‚“ã§ã‚ã‚‹ãƒŸãƒ
 	for (let y = 0; y < boardRow; y++) {
 		for (let x = 0; x < boardCol; x++) {
 			if (board[y][x] != -1) {
@@ -128,7 +123,7 @@ function draw() {
 			}
 		}
 
-		//—‚¿‚Ä‚¢‚éƒ~ƒm
+		//è½ã¡ã¦ã„ã‚‹ãƒŸãƒ
 		for (let y = 0; y < minoSize; y++) {
 			for (let x = 0; x < minoSize; x++) {
 				if (mino[y][x] == 1) {
@@ -140,7 +135,7 @@ function draw() {
 
 	if (isGameOver) {
 		const text = "GAME OVER";
-		ctx.font = "40px MSƒSƒVƒbƒN";
+		ctx.font = "40px MSã‚´ã‚·ãƒƒã‚¯";
 		const w = ctx.measureText(text).width;
 		const x = (canvasWidth - w) / 2;
 		const y = canvasHeight / 2 - 20;
@@ -165,11 +160,10 @@ function drawSubCanvas() {
 }
 
 
-//‰Šú‰»ˆ—
+//åˆæœŸåŒ–å‡¦ç†
 function init() {
 	isGameOver = false;
-	music.play();
-	//board‚Ì‰Šú‰»
+	//boardã®åˆæœŸåŒ–
 	for (let y = 0; y < boardRow; y++) {
 		board[y] = [];
 		for (let x = 0; x < boardCol; x++) {
@@ -186,7 +180,7 @@ function init() {
 	draw();
 	timerId = setInterval(update, interval);
 }
-//ƒ~ƒm‚Ì“®‚«‚ÉŠÖ‚·‚éˆ—
+//ãƒŸãƒã®å‹•ãã«é–¢ã™ã‚‹å‡¦ç†
 function drawBlock(x, y, minoId, context = ctx) {
 	let px = x * blockSize;
 	let py = y * blockSize;
@@ -200,7 +194,7 @@ function canMove(dx, dy, newMino = mino) {
 	for (let y = 0; y < minoSize; y++) {
 		for (let x = 0; x < minoSize; x++) {
 			if (newMino[y][x] == 1) {
-				//ˆÚ“®Œã‚Ìƒ{[ƒhÀ•W
+				//ç§»å‹•å¾Œã®ãƒœãƒ¼ãƒ‰åº§æ¨™
 				let nx = x + offsetX + dx;
 				let ny = y + offsetY + dy;
 				if (
@@ -274,7 +268,7 @@ function clearLine() {
 
 }
 
-//”z—ñ‚ÌƒVƒƒƒbƒtƒ‹
+//é…åˆ—ã®ã‚·ãƒ£ãƒƒãƒ•ãƒ«
 function shuffuleArray(array) {
 	for (let i = array.length - 1; i >= 0; i--) {
 		let index = Math.floor(Math.random() * array.length);
@@ -292,7 +286,7 @@ function gameOver() {
 	if (lines > best) localStorage.setItem("Best", lines);
 }
 
-//ƒCƒxƒ“ƒg‚Ìw’è
+//ã‚¤ãƒ™ãƒ³ãƒˆã®æŒ‡å®š
 document.addEventListener("keydown", (event) => {
 	if (isGameOver) {
 		init();
@@ -322,7 +316,7 @@ document.addEventListener("keydown", (event) => {
 
 function update() {
 	if (isGameOver) return;
-	//ƒ~ƒm‚ğ—‚Æ‚·
+	//ãƒŸãƒã‚’è½ã¨ã™
 	if (canMove(0, 1)) {
 		offsetY++;
 	}
